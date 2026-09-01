@@ -298,6 +298,7 @@ body.dark-theme .dashboard-top > p { color: #c5d6ce; }
 .division-card { min-height: 590px; }
 .division-card.green { background-image: linear-gradient(0deg, rgba(5,48,72,.94), rgba(5,48,72,.15)), url('https://enericpower.com/wp-content/uploads/2026/06/SXtgpQt4jIFEy1wqQAHFA.jpg'); }
 .division-card.blue { background-image: linear-gradient(180deg, rgba(5,37,91,.78) 0%, rgba(8,54,122,.94) 54%, rgba(6,41,98,.98) 100%), url('https://enericpower.com/wp-content/uploads/2026/06/zhFq5LCVIzQ5n1Yri4ms0.jpg'); }
+.blue-feature { background: linear-gradient(90deg, rgba(5,36,90,.94) 0%, rgba(8,66,145,.88) 52%, rgba(5,36,90,.93) 100%), url('https://images.unsplash.com/photo-1700836988631-06ce6aefa9ef?auto=format&fit=crop&w=2200&q=85') center/cover; }
 .division-card.pmc { background: #e7f3ea url('https://enericpower.com/wp-content/uploads/2026/06/se-LvfbCTqMZbe5BbfMak.jpg') center/cover; }
 .division-card.pmc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(231,243,234,.97), rgba(231,243,234,.56)); }
 .division-card > :not(.division-close) { position: relative; z-index: 1; }
