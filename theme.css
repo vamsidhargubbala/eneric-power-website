@@ -356,7 +356,7 @@ body.division-active { overflow: hidden; }
 .case-study > * { position: relative; z-index: 1; }
 .solar-case { background-image: url('assets/images/green-energy-solar-site.jpg'); }
 .grid-case { background-image: url('assets/images/transmission-towers.jpg'); }
-.controls-case { background-image: url('assets/images/team-on-site.jpg'); }
+.controls-case { background-image: url('assets/images/infrastructure-delivery.jpg'); }
 .case-study > div { display: flex; align-items: center; justify-content: space-between; }
 .case-study > div span, .case-study small { font-size: 9px; font-weight: 700; letter-spacing: 1.4px; }
 .case-study > div b { color: var(--lime); font-size: 20px; }
