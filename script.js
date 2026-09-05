@@ -50,23 +50,24 @@ const counters = document.querySelectorAll('.counter');
 const countUp = (element) => {
   const target = Number(element.dataset.target);
   const start = performance.now();
-  const duration = 1250;
+  const duration = 1300;
+  if (element._counterAnimation) cancelAnimationFrame(element._counterAnimation);
+  element.textContent = '0';
   const update = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     element.textContent = Math.round(target * eased);
-    if (progress < 1) requestAnimationFrame(update);
+    if (progress < 1) element._counterAnimation = requestAnimationFrame(update);
   };
-  requestAnimationFrame(update);
+  element._counterAnimation = requestAnimationFrame(update);
 };
-const counterObserver = new IntersectionObserver((entries, observer) => {
+const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
     entry.target.querySelectorAll('.counter').forEach(countUp);
-    observer.unobserve(entry.target);
   });
-}, { threshold: 0.35 });
-document.querySelectorAll('.stats').forEach((section) => counterObserver.observe(section));
+}, { threshold: 0.55 });
+document.querySelectorAll('[data-counter-group]').forEach((section) => counterObserver.observe(section));
 
 const divisionGrid = document.querySelector('.division-grid');
 const openDivision = (card) => {
