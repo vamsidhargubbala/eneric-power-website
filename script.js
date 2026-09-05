@@ -46,7 +46,6 @@ window.addEventListener('scroll', updateHeaderState, { passive: true });
 window.addEventListener('resize', updateHeaderState);
 updateHeaderState();
 
-const counters = document.querySelectorAll('.counter');
 const countUp = (element) => {
   const target = Number(element.dataset.target);
   const start = performance.now();
@@ -63,11 +62,19 @@ const countUp = (element) => {
 };
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
+    if (!entry.isIntersecting) {
+      entry.target._countersArmed = true;
+      return;
+    }
+    if (entry.target._countersArmed === false) return;
+    entry.target._countersArmed = false;
     entry.target.querySelectorAll('.counter').forEach(countUp);
   });
-}, { threshold: 0.55 });
-document.querySelectorAll('[data-counter-group]').forEach((section) => counterObserver.observe(section));
+}, { threshold: 0.15 });
+document.querySelectorAll('[data-counter-group]').forEach((section) => {
+  section._countersArmed = true;
+  counterObserver.observe(section);
+});
 
 const divisionGrid = document.querySelector('.division-grid');
 const openDivision = (card) => {

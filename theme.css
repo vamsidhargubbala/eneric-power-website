@@ -35,6 +35,8 @@ footer .brand img { width: 130px; }
 
 .button-primary { background: var(--green); color: #fff; }
 .hero-badge { background: var(--green); color: #fff; }
+.hero-badge > span { font-size: 11px; line-height: 1.3; margin-top: 7px; }
+.hero-badge strong .counter { margin: 0; color: inherit; font: inherit; line-height: inherit; letter-spacing: inherit; }
 .division-card.green { background-color: #053048; }
 .division-card.blue { background-color: #1661d7; }
 .division-card.pmc { background-color: #e7f3ea; }
