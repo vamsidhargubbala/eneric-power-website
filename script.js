@@ -163,3 +163,29 @@ if (storeRender) {
     storeRender.style.setProperty("--store-tilt-y", "0deg");
   });
 }
+
+
+const commandTabs = document.querySelectorAll(".cc-tab");
+const setCommandView = (name) => {
+  commandTabs.forEach((tab) => {
+    const active = tab.dataset.commandView === name;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
+  document.querySelectorAll(".cc-panel").forEach((panel) => panel.classList.toggle("active", panel.dataset.commandPanel === name));
+};
+commandTabs.forEach((tab) => tab.addEventListener("click", () => setCommandView(tab.dataset.commandView)));
+
+const universe = document.querySelector(".cc-universe");
+if (universe) {
+  const universeTitle = universe.querySelector(".universe-info b");
+  const universeCopy = universe.querySelector(".universe-info span");
+  universe.querySelectorAll(".universe-node").forEach((node) => {
+    node.addEventListener("click", () => {
+      universe.querySelectorAll(".universe-node").forEach((item) => item.classList.remove("active"));
+      node.classList.add("active");
+      universeTitle.textContent = node.dataset.universeTitle;
+      universeCopy.textContent = node.dataset.universeCopy;
+    });
+  });
+}
