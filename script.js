@@ -247,3 +247,13 @@ if (controlWheel) {
     });
   });
 }
+
+const divisionImageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("image-ready");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { rootMargin: "350px 0px" });
+document.querySelectorAll(".division-card").forEach((card) => divisionImageObserver.observe(card));
