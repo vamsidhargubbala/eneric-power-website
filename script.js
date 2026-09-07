@@ -137,3 +137,29 @@ const setDashboardPanel = (name) => {
   document.querySelectorAll('.dashboard-panel').forEach((panel) => panel.classList.toggle('active', panel.dataset.dashboardPanel === name));
 };
 dashboardTabs.forEach((tab) => tab.addEventListener('click', () => setDashboardPanel(tab.dataset.dashboard)));
+
+
+const storeRender = document.querySelector(".cc-store-render");
+if (storeRender) {
+  const storeInfoTitle = storeRender.querySelector(".store-info b");
+  const storeInfoCopy = storeRender.querySelector(".store-info span");
+  storeRender.querySelectorAll(".store-hotspot").forEach((hotspot) => {
+    hotspot.addEventListener("click", () => {
+      storeRender.querySelectorAll(".store-hotspot").forEach((item) => item.classList.remove("active"));
+      hotspot.classList.add("active");
+      storeInfoTitle.textContent = hotspot.dataset.storeTitle;
+      storeInfoCopy.textContent = hotspot.dataset.storeCopy;
+    });
+  });
+  storeRender.addEventListener("pointermove", (event) => {
+    const bounds = storeRender.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    storeRender.style.setProperty("--store-tilt-x", (x * -4) + "deg");
+    storeRender.style.setProperty("--store-tilt-y", (y * 3) + "deg");
+  });
+  storeRender.addEventListener("pointerleave", () => {
+    storeRender.style.setProperty("--store-tilt-x", "0deg");
+    storeRender.style.setProperty("--store-tilt-y", "0deg");
+  });
+}

@@ -439,3 +439,20 @@ body.dark-theme .assurance-list span { color: #eff7f1; border-color: rgba(216, 2
 .store-cable i { width: 20px; height: 20px; border: 4px solid #e2b85d; border-radius: 50%; background: #27343d; box-shadow: 0 0 0 2px #755b2d, 4px 5px 0 rgba(0,0,0,.3); }
 body.dark-theme .greenloop-infinity { opacity: .4; }
 @media (max-width: 760px) { .greenloop-infinity { top: 38px; right: 6vw; transform: scale(.72) rotate(-13deg); transform-origin: top right; } }
+
+/* Interactive Command Center site-store model. */
+.cc-store-render { cursor: crosshair; perspective: 700px; transition: transform .35s ease, box-shadow .35s ease; transform: rotateX(var(--store-tilt-y, 0deg)) rotateY(var(--store-tilt-x, 0deg)); }
+.cc-store-render:hover, .cc-store-render:focus-visible { box-shadow: 0 14px 28px rgba(4,20,31,.34); outline: none; }
+.cc-store-render:hover .store-building { animation: store-float 2.8s ease-in-out infinite; }
+.cc-store-render:hover .store-canopy { animation: canopy-glow 2.4s ease-in-out infinite; }
+.cc-store-render:hover .store-racks, .cc-store-render:hover .store-cable { animation: store-rise 2.8s ease-in-out infinite alternate; }
+@keyframes store-float { 50% { margin-top: -3px; filter: brightness(1.15); } }
+@keyframes canopy-glow { 50% { filter: brightness(1.6) drop-shadow(0 0 8px rgba(101,210,255,.7)); } }
+@keyframes store-rise { to { margin-bottom: 4px; } }
+.store-hotspot { position: absolute; z-index: 6; padding: 4px 6px; border: 1px solid rgba(206,255,225,.72); border-radius: 2px; background: rgba(4,32,44,.88); color: #e9fff1; box-shadow: 0 0 0 0 rgba(143,219,101,.45); font: 700 7px var(--site-font); letter-spacing: .6px; text-transform: uppercase; cursor: pointer; transition: .2s ease; }
+.store-hotspot:hover, .store-hotspot:focus-visible, .store-hotspot.active { border-color: var(--lime); background: rgba(16,109,72,.94); box-shadow: 0 0 0 4px rgba(143,219,101,.13), 0 0 14px rgba(143,219,101,.35); outline: none; }
+.hotspot-store { top: 126px; left: 79px; }.hotspot-solar { top: 45px; right: 16px; }.hotspot-racks { bottom: 65px; right: 13px; }.hotspot-cable { bottom: 39px; left: 13px; }
+.store-info { position: absolute; z-index: 5; left: 12px; right: 12px; bottom: 11px; max-width: 162px; padding: 7px 8px; border-left: 2px solid var(--lime); background: rgba(3,25,36,.84); color: #c8e4d4; backdrop-filter: blur(7px); pointer-events: none; }
+.store-info b { display: block; color: #f3fff7; font-size: 8px; letter-spacing: .5px; text-transform: uppercase; }.store-info span { display: block; margin-top: 3px; font-size: 7px; line-height: 1.35; }
+.cc-store-render > small { z-index: 7; }
+@media (max-width: 500px) { .hotspot-store { left: 71px; }.store-info { max-width: 150px; } }
