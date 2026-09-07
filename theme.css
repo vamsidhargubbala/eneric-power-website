@@ -525,3 +525,10 @@ body.dark-theme .greenloop-infinity { opacity: .4; }
   .command-center-ui { overflow: hidden; }
   .cc-wheel-readout { overflow-wrap: anywhere; }
 }
+
+
+/* Keep the hero badge and image-credit label clear of one another on phones. */
+@media (max-width: 760px) {
+  .hero-video .hero-badge { right: 20px; bottom: 48px; }
+  .hero-video .image-credit { right: auto; bottom: 18px; left: 7vw; max-width: 190px; line-height: 1.35; text-align: left; }
+}
