@@ -232,3 +232,18 @@ if (indiaMapCanvas && typeof INDIA_STATE_PATHS !== "undefined") {
   });
   indiaMapCanvas.appendChild(svg);
 }
+
+
+const controlWheel = document.querySelector(".cc-wheel-stage");
+if (controlWheel) {
+  const wheelTitle = document.querySelector(".cc-wheel-readout b");
+  const wheelCopy = document.querySelector(".cc-wheel-readout > span");
+  controlWheel.querySelectorAll(".cc-wheel-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      controlWheel.querySelectorAll(".cc-wheel-card").forEach((item) => item.classList.remove("active"));
+      card.classList.add("active");
+      wheelTitle.textContent = card.dataset.wheelTitle;
+      wheelCopy.textContent = card.dataset.wheelCopy;
+    });
+  });
+}
