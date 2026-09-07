@@ -540,3 +540,7 @@ body.dark-theme .greenloop-infinity { opacity: .4; }
 @keyframes power-flow { from { left: 0; opacity: 0; transform: scale(.5); } 12% { opacity: 1; } 82% { opacity: 1; } to { left: calc(100% - 13px); opacity: 0; transform: scale(1.25); } }
 @keyframes intro-grid-shift { to { transform: translateX(67px); } }
 @media (max-width: 760px) { .power-intro-label { margin-bottom: 30px; }.power-intro-label b { font-size: 31px; }.power-intro-label small { max-width: 230px; margin-right: auto; margin-left: auto; line-height: 1.5; }.power-transfer { width: min(300px, 76vw); }.power-source, .power-grid { transform: scale(.82); }.power-grid { transform: scale(.82) perspective(80px) rotateX(6deg); }.power-line { margin: 0 8px; } }
+
+
+/* Keep the hero video credit readable in every theme. */
+.hero-video .image-credit { color: #fff; }
