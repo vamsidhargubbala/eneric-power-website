@@ -25,16 +25,23 @@ if (savedFont === 'montserrat' || savedFont === 'dm-sans') setFont(savedFont);
 fontOptions.forEach((option) => option.addEventListener('click', () => setFont(option.dataset.font)));
 
 const themeToggle = document.querySelector('.theme-toggle');
-const setTheme = (theme) => {
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+const applyTheme = (theme) => {
   const isDark = theme === 'dark';
   document.body.classList.toggle('dark-theme', isDark);
   themeToggle?.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
   if (themeToggle) themeToggle.querySelector('span').textContent = isDark ? '☀' : '☾';
-  localStorage.setItem('eneric-theme', theme);
 };
 const savedTheme = localStorage.getItem('eneric-theme');
-setTheme(savedTheme === 'light' ? 'light' : 'dark');
-themeToggle?.addEventListener('click', () => setTheme(document.body.classList.contains('dark-theme') ? 'light' : 'dark'));
+applyTheme(savedTheme || (systemTheme.matches ? 'dark' : 'light'));
+themeToggle?.addEventListener('click', () => {
+  const nextTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+  applyTheme(nextTheme);
+  localStorage.setItem('eneric-theme', nextTheme);
+});
+systemTheme.addEventListener?.('change', (event) => {
+  if (!localStorage.getItem('eneric-theme')) applyTheme(event.matches ? 'dark' : 'light');
+});
 
 const header = document.querySelector('.site-header');
 const openingVideo = document.querySelector('.hero-visual');
