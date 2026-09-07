@@ -264,3 +264,16 @@ const divisionImageObserver = new IntersectionObserver((entries, observer) => {
   });
 }, { rootMargin: "350px 0px" });
 document.querySelectorAll(".division-card").forEach((card) => divisionImageObserver.observe(card));
+
+
+const heroVideoElement = document.querySelector(".hero-video video");
+const heroPowerIntro = document.querySelector(".hero-power-intro");
+if (heroPowerIntro) {
+  const introStartedAt = performance.now();
+  const completeHeroIntro = () => {
+    const remaining = Math.max(0, 2400 - (performance.now() - introStartedAt));
+    window.setTimeout(() => heroPowerIntro.classList.add("is-complete"), remaining);
+  };
+  heroVideoElement?.addEventListener("canplay", completeHeroIntro, { once: true });
+  window.setTimeout(completeHeroIntro, 6500);
+}
