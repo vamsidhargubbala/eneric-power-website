@@ -189,3 +189,46 @@ if (universe) {
     });
   });
 }
+
+
+const indiaMapCanvas = document.querySelector(".india-map-canvas");
+if (indiaMapCanvas && typeof INDIA_STATE_PATHS !== "undefined") {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 " + INDIA_SVG_WIDTH + " " + INDIA_SVG_HEIGHT);
+  svg.setAttribute("aria-hidden", "true");
+  INDIA_STATE_PATHS.forEach((state) => {
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", state[2]);
+    path.setAttribute("class", "india-state");
+    svg.appendChild(path);
+  });
+  const locations = [
+    { name: "Solapur, Maharashtra", note: "Blue Energy • public portfolio location", lat: 17.68, lon: 75.91 },
+    { name: "Akola District, Maharashtra", note: "Green Energy • public portfolio location", lat: 20.70, lon: 76.95 },
+    { name: "Amravati District, Maharashtra", note: "Green Energy • public portfolio location", lat: 20.93, lon: 77.75 }
+  ];
+  const bounds = INDIA_GEO_BOUNDS;
+  const infoTitle = document.querySelector(".india-map-info b");
+  const infoCopy = document.querySelector(".india-map-info span");
+  locations.forEach((location, index) => {
+    const marker = document.createElementNS(ns, "circle");
+    marker.setAttribute("cx", ((location.lon - bounds.lonMin) / (bounds.lonMax - bounds.lonMin) * INDIA_SVG_WIDTH).toFixed(1));
+    marker.setAttribute("cy", ((bounds.latMax - location.lat) / (bounds.latMax - bounds.latMin) * INDIA_SVG_HEIGHT).toFixed(1));
+    marker.setAttribute("r", index === 0 ? "6" : "5");
+    marker.setAttribute("class", "india-map-marker" + (index === 0 ? " active" : ""));
+    marker.setAttribute("tabindex", "0");
+    marker.setAttribute("role", "button");
+    marker.setAttribute("aria-label", location.name);
+    const selectLocation = () => {
+      svg.querySelectorAll(".india-map-marker").forEach((item) => item.classList.remove("active"));
+      marker.classList.add("active");
+      infoTitle.textContent = location.name;
+      infoCopy.textContent = location.note;
+    };
+    marker.addEventListener("click", selectLocation);
+    marker.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectLocation(); } });
+    svg.appendChild(marker);
+  });
+  indiaMapCanvas.appendChild(svg);
+}

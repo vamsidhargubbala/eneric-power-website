@@ -320,7 +320,16 @@ body.division-active { overflow: hidden; }
 .division-grid .division-card.is-expanded h3 { font-size: clamp(46px, 7vw, 92px); max-width: 760px; }
 .division-grid .division-card.is-expanded > p:not(.eyebrow) { max-width: 610px; font-size: 17px; margin: 28px 0; }
 .division-grid .division-card.is-expanded ul { columns: 2; max-width: 700px; font-size: 14px; line-height: 2.3; }
-.division-grid .division-card.is-expanded .division-open { max-width: 400px; margin-top: 42px; font-size: 14px; }
+.division-detail { display: none; }
+.division-grid .division-card.is-expanded .division-detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 920px; margin-top: 44px; }
+.division-detail > div { padding: 19px 17px; border: 1px solid rgba(255,255,255,.28); background: rgba(2,27,38,.35); backdrop-filter: blur(8px); }
+.division-detail b { display: block; margin-bottom: 9px; color: var(--lime); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+.division-detail span { display: block; color: #effbf2; font-size: 12px; line-height: 1.55; }
+.pmc .division-detail > div { border-color: rgba(5,48,72,.2); background: rgba(235,248,239,.68); }
+.pmc .division-detail span { color: var(--ink); }
+body.dark-theme .pmc .division-detail > div { border-color: rgba(220,244,230,.2); background: rgba(3,28,40,.48); }
+body.dark-theme .pmc .division-detail span { color: #eff8f3; }
+.division-grid .division-card.is-expanded .division-open { display: none; }
 .division-grid .division-card.is-expanded .division-close { display: block; }
 .division-grid .division-card.is-expanded .milestone-ribbon { max-width: 420px; }
 
@@ -332,6 +341,7 @@ body.division-active { overflow: hidden; }
   .division-card { min-height: 500px; }
   .division-grid .division-card.is-expanded { padding: 100px 8vw 45px; }
   .division-grid .division-card.is-expanded ul { columns: 1; }
+  .division-grid .division-card.is-expanded .division-detail { grid-template-columns: 1fr; margin-top: 30px; }
   .division-close { right: 8vw; }
 }
 
@@ -471,3 +481,7 @@ body.dark-theme .greenloop-infinity { opacity: .4; }
 .universe-link { position: absolute; z-index: 1; height: 1px; transform-origin: left; background: linear-gradient(90deg, rgba(143,219,101,.7), rgba(58,160,255,.25)); animation: universe-pulse 2.8s ease-in-out infinite; }.link-one { top: 86px; left: 37%; width: 31%; transform: rotate(10deg); }.link-two { top: 117px; left: 36%; width: 21%; transform: rotate(58deg); animation-delay: -.9s; }.link-three { top: 118px; left: 56%; width: 21%; transform: rotate(125deg); animation-delay: -1.8s; }
 @keyframes universe-pulse { 50% { opacity: .22; filter: brightness(1.6); } }.universe-info { position: absolute; z-index: 4; left: 12px; bottom: 11px; max-width: 175px; padding: 7px 8px; border-left: 2px solid var(--lime); background: rgba(3,25,36,.84); color: #c8e4d4; backdrop-filter: blur(7px); pointer-events: none; }.universe-info b { display: block; color: #f3fff7; font-size: 8px; letter-spacing: .5px; text-transform: uppercase; }.universe-info span { display: block; margin-top: 3px; font-size: 7px; line-height: 1.35; }
 @media (max-width: 760px) { .cc-panel.active[data-command-panel="universe"] { grid-template-columns: 1fr; }.cc-universe { min-height: 235px; } }
+
+
+/* Public India project map, adapted from the Command Center portfolio universe. */
+.cc-project-map { position: relative; min-height: 215px; overflow: hidden; border: 1px solid rgba(220,244,230,.14); background: linear-gradient(145deg, #0a3446, #061f2d); }.cc-project-map > span { position: absolute; z-index: 5; top: 12px; left: 12px; color: #86a99a; font-size: 8px; font-weight: 700; letter-spacing: 1px; }.cc-project-map > small { position: absolute; z-index: 5; right: 11px; bottom: 10px; color: #8eb3a5; font-size: 7px; letter-spacing: .7px; text-transform: uppercase; }.india-project-map, .india-map-canvas { position: absolute; inset: 0; }.india-map-canvas svg { width: 100%; height: 100%; padding: 30px 33px 18px; box-sizing: border-box; }.india-state { fill: rgba(75,150,180,.17); stroke: rgba(159,213,224,.44); stroke-width: 1.1; transition: .2s ease; }.india-state:hover { fill: rgba(17,186,93,.22); }.india-map-marker { fill: var(--green); stroke: #e9fff1; stroke-width: 2; cursor: pointer; filter: drop-shadow(0 0 6px rgba(143,219,101,.8)); transition: .2s ease; }.india-map-marker:hover, .india-map-marker.active { fill: var(--lime); r: 8; }.india-map-info { position: absolute; z-index: 6; left: 12px; bottom: 10px; max-width: 170px; padding: 7px 8px; border-left: 2px solid var(--lime); background: rgba(3,25,36,.85); color: #c8e4d4; backdrop-filter: blur(7px); pointer-events: none; }.india-map-info b { display: block; color: #f3fff7; font-size: 8px; letter-spacing: .5px; text-transform: uppercase; }.india-map-info span { display: block; margin-top: 3px; font-size: 7px; line-height: 1.35; }
