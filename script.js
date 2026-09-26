@@ -281,16 +281,36 @@ if (heroPowerIntro) {
 
 const journeyMilestones = document.querySelectorAll(".journey-milestone");
 const journeyDetail = document.querySelector(".journey-detail");
-if (journeyMilestones.length && journeyDetail) {
+const journeyStage = document.querySelector(".journey-stage");
+if (journeyMilestones.length && journeyDetail && journeyStage) {
   const journeyYear = journeyDetail.querySelector("span");
   const journeyTitle = journeyDetail.querySelector("b");
   const journeyCopy = journeyDetail.querySelector("p");
-  journeyMilestones.forEach((milestone) => milestone.addEventListener("click", () => {
+  let journeyIndex = 0;
+  let journeyTimer;
+  const selectJourneyMilestone = (milestone) => {
     journeyMilestones.forEach((item) => { item.classList.remove("active"); item.setAttribute("aria-pressed", "false"); });
     milestone.classList.add("active");
     milestone.setAttribute("aria-pressed", "true");
     journeyYear.textContent = milestone.dataset.journeyYear;
     journeyTitle.textContent = milestone.dataset.journeyTitle;
     journeyCopy.textContent = milestone.dataset.journeyCopy;
-  }));
+    journeyStage.classList.remove("is-detail-changing");
+    void journeyStage.offsetWidth;
+    journeyStage.classList.add("is-detail-changing");
+    journeyIndex = Array.prototype.indexOf.call(journeyMilestones, milestone);
+  };
+  const stopJourneyCycle = () => window.clearInterval(journeyTimer);
+  const startJourneyCycle = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    stopJourneyCycle();
+    journeyTimer = window.setInterval(() => selectJourneyMilestone(journeyMilestones[(journeyIndex + 1) % journeyMilestones.length]), 4800);
+  };
+  journeyMilestones.forEach((milestone) => milestone.addEventListener("click", () => { selectJourneyMilestone(milestone); startJourneyCycle(); }));
+  journeyStage.addEventListener("mouseenter", stopJourneyCycle);
+  journeyStage.addEventListener("mouseleave", startJourneyCycle);
+  new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) { journeyStage.classList.add("is-journey-active"); startJourneyCycle(); }
+    else { stopJourneyCycle(); }
+  }), { threshold: .28 }).observe(journeyStage);
 }
