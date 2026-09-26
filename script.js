@@ -277,3 +277,20 @@ if (heroPowerIntro) {
   heroVideoElement?.addEventListener("canplay", completeHeroIntro, { once: true });
   window.setTimeout(completeHeroIntro, 6500);
 }
+
+
+const journeyMilestones = document.querySelectorAll(".journey-milestone");
+const journeyDetail = document.querySelector(".journey-detail");
+if (journeyMilestones.length && journeyDetail) {
+  const journeyYear = journeyDetail.querySelector("span");
+  const journeyTitle = journeyDetail.querySelector("b");
+  const journeyCopy = journeyDetail.querySelector("p");
+  journeyMilestones.forEach((milestone) => milestone.addEventListener("click", () => {
+    journeyMilestones.forEach((item) => { item.classList.remove("active"); item.setAttribute("aria-pressed", "false"); });
+    milestone.classList.add("active");
+    milestone.setAttribute("aria-pressed", "true");
+    journeyYear.textContent = milestone.dataset.journeyYear;
+    journeyTitle.textContent = milestone.dataset.journeyTitle;
+    journeyCopy.textContent = milestone.dataset.journeyCopy;
+  }));
+}
