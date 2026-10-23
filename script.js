@@ -134,6 +134,22 @@ document.querySelector('.carousel-prev')?.addEventListener('click', () => moveCa
 let carouselTimer = setInterval(() => moveCarousel(1), 5000);
 document.querySelector('.project-carousel')?.addEventListener('mouseenter', () => clearInterval(carouselTimer));
 
+const galleryTrack = document.querySelector('.gallery-track');
+const gallerySlides = document.querySelectorAll('.gallery-slide');
+let galleryIndex = 0;
+const moveGallery = (direction) => {
+  if (!galleryTrack || !gallerySlides.length) return;
+  const visible = window.innerWidth <= 760 ? 1 : 3;
+  const maxIndex = Math.max(0, gallerySlides.length - visible);
+  galleryIndex = (galleryIndex + direction + maxIndex + 1) % (maxIndex + 1);
+  const step = galleryTrack.parentElement.clientWidth / visible + 18 / visible;
+  galleryTrack.style.transform = `translateX(-${galleryIndex * step}px)`;
+};
+document.querySelector('.gallery-next')?.addEventListener('click', () => moveGallery(1));
+document.querySelector('.gallery-prev')?.addEventListener('click', () => moveGallery(-1));
+let galleryTimer = setInterval(() => moveGallery(1), 5400);
+document.querySelector('.gallery')?.addEventListener('mouseenter', () => clearInterval(galleryTimer));
+
 const dashboardTabs = document.querySelectorAll('.dashboard-tab');
 const setDashboardPanel = (name) => {
   dashboardTabs.forEach((tab) => {
