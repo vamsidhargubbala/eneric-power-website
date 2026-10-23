@@ -48,7 +48,7 @@ footer .brand img { width: 130px; }
 .video-panel { position: relative; overflow: hidden; background: #041f2e; }
 .video-panel iframe { display: block; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .greenloop-video { width: min(100%, 900px); aspect-ratio: 16 / 9; margin-top: 52px; }
-.hero-video { background: #053048 url('assets/images/green-energy-web.jpg') center/cover no-repeat; }
+.hero-video { background: #053048 url('assets/images/hero-video-start.jpg') center/cover no-repeat; }
 .hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero-video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 48, 72, .18), rgba(5, 48, 72, .02)); }
 .hero-video .hero-badge, .hero-video .image-credit { z-index: 1; }
@@ -737,3 +737,24 @@ body.dark-theme .journey { background: #062b36; color: #eff8f3; }.dark-theme .jo
 .journey-orb { width: 36px; height: 36px; margin: -4px 0 7px; border: 2px solid #fff; background: #0d6a73; color: #fff; box-shadow: 0 0 0 4px rgba(17,180,146,.13), 0 0 16px rgba(13,182,157,.35); }.journey-milestone:hover .journey-orb, .journey-milestone.active .journey-orb { transform: scale(1.12); background: #0ca67e; box-shadow: 0 0 0 6px rgba(16,190,149,.14), 0 0 20px rgba(14,194,159,.55); }
 .journey-milestone time { color: #0a8769; font-size: 8px; font-weight: 800; text-shadow: none; }.journey-milestone b { max-width: 110px; margin-top: 3px; color: #163e38; font-size: 10px; line-height: 1.12; text-shadow: none; }.journey-milestone small { display: none; }
 @media (max-width: 760px) { #journey { scroll-margin-top: 76px; }.journey-stage { min-height: 930px; padding: 18px 14px; }.journey-visual-map { top: 170px; right: 14px; left: 14px; height: 185px; grid-template-columns: 1fr 1fr 1fr; }.journey-image { background-position: center; }.journey-image:not(.solar) { display: block; }.journey-route { top: 465px; right: 27px; left: 27px; width: auto; height: 2px; background: linear-gradient(90deg, #9ae85d, #14b492 50%, #40bdec); }.journey-route i { top: -7px !important; }.journey-milestones { top: 418px; right: 14px; left: 14px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); grid-template-rows: repeat(4, 110px); height: 475px; padding: 34px 8px 8px; }.journey-milestones::before { left: 13px; }.journey-milestone { padding: 0 7px; }.journey-orb { position: static; width: 34px; height: 34px; margin: 0 0 6px; transform: none; }.journey-milestone:hover .journey-orb, .journey-milestone.active .journey-orb { transform: scale(1.08); }.journey-milestone time, .journey-milestone b { margin: 0; }.journey-milestone b { max-width: 120px; font-size: 11px; }.journey-detail { margin-bottom: 13px; } }
+
+/* About: the company story now sits with its headline; the paired intent panels align beside it. */
+.intro-grid { align-items: start; }
+.about-anchor { justify-content: flex-start; }
+.about-anchor h2, .about-anchor .about-overview, .about-anchor .about-goals { position: relative; z-index: 1; }
+.about-overview { min-height: 264px; max-width: 540px; margin-top: 30px; padding: 23px 25px; border: 1px solid var(--line); border-top: 3px solid var(--green); background: linear-gradient(135deg, rgba(140,191,68,.09), rgba(9,122,171,.035)); }
+.about-overview > span { display: block; color: var(--green); font-size: 9px; font-weight: 800; letter-spacing: 1.7px; }
+.intro-grid .about-overview p { margin: 16px 0 0; color: var(--muted); font-size: 15px; line-height: 1.56; }
+.about-side { min-width: 0; }
+.about-side .about-purpose { margin: 0; }
+.about-side .about-purpose article { display: flex; min-height: 264px; flex-direction: column; }
+.about-side .about-purpose p { margin-top: auto; }
+.about-anchor .about-goals { margin-top: 25px; }
+.about-side .about-commitments { margin-top: 25px; }
+@media (max-width: 760px) {
+  .about-overview { min-height: 0; margin-top: 24px; padding: 19px 18px; }
+  .intro-grid .about-overview p { font-size: 14px; }
+  .about-side .about-purpose { margin-top: 26px; }
+  .about-side .about-purpose article { min-height: 0; }
+  .about-side .about-purpose p { margin-top: 12px; }
+}
