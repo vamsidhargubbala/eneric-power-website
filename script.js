@@ -275,7 +275,7 @@ if (heroPowerIntro) {
     window.setTimeout(() => heroPowerIntro.classList.add("is-complete"), remaining);
   };
   heroVideoElement?.addEventListener("canplay", completeHeroIntro, { once: true });
-  window.setTimeout(completeHeroIntro, 6500);
+  window.setTimeout(completeHeroIntro, 2800);
 }
 
 

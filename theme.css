@@ -48,7 +48,7 @@ footer .brand img { width: 130px; }
 .video-panel { position: relative; overflow: hidden; background: #041f2e; }
 .video-panel iframe { display: block; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .greenloop-video { width: min(100%, 900px); aspect-ratio: 16 / 9; margin-top: 52px; }
-.hero-video { background: #053048; }
+.hero-video { background: #053048 url('assets/images/green-energy-web.jpg') center/cover no-repeat; }
 .hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero-video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 48, 72, .18), rgba(5, 48, 72, .02)); }
 .hero-video .hero-badge, .hero-video .image-credit { z-index: 1; }
